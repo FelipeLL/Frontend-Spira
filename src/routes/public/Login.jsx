@@ -21,7 +21,11 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
-      navigate("/list");
+      if (user.roleId === 1) {
+        navigate("/backoffice");
+      } else {
+        navigate("/list");
+      }
     }
   }, [user]);
 
