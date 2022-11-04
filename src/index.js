@@ -6,6 +6,7 @@ import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './routes/public/Login';
 import Backoffice from "./routes/private/Backoffice";
+import CreateUser from "./routes/private/CreateUser";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route path='/' element={<App />}>
           <Route index element={<Login />} />
           <Route path="/backoffice" element={<Backoffice />} />
+          <Route path="/backoffice/create" element={<CreateUser />} />
         </Route>
       </Routes>
     </BrowserRouter>
