@@ -16,19 +16,6 @@ const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  const register = async (values, actions) => {
-    try {
-      const res = await httpService.post("/auth/register", {
-        name: values.name,
-        email: values.lastname,
-        phone: values.email,
-        password: values.password,
-      });
-      setUser(res.data.user);
-    } catch (err) {
-      alertError(err.response.data);
-    }
-  };
   const login = async (values) => {
     try {
       const res = await httpService.post("/auth/login", values);
@@ -63,7 +50,6 @@ const UserProvider = ({ children }) => {
         setUser,
         logout,
         login,
-        register,
       }}
     >
       {children}

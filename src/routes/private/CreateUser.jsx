@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import styles from "../../styles/createUser.module.css";
-import { alertError } from "../../utilities/Alerts";
+import { alertError, alertSuccess } from "../../utilities/Alerts";
 import { formValidate } from "../../utilities/formValidate";
 import FormError from "../../components/FormError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import httpService from "../../services/httpService";
+import { ToastContainer } from "react-toastify";
 
 const CreateUser = () => {
   const navigate = useNavigate();
@@ -19,8 +21,10 @@ const CreateUser = () => {
   const onSubmit = async (data) => {
     try {
       console.log(data);
+      await httpService.post("/auth/register", data);
+      alertSuccess("Usuario registrado correctamente");
     } catch (error) {
-      alertError(error.response.data);
+      alertError(error.response.data.error);
     }
   };
 
@@ -97,6 +101,7 @@ const CreateUser = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
