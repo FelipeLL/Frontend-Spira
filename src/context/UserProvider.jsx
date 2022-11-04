@@ -29,7 +29,7 @@ const UserProvider = ({ children }) => {
       alertError(err.response.data);
     }
   };
-  const login = async (values, actions) => {
+  const login = async (values) => {
     try {
       const res = await httpService.post("/auth/login", values);
       sessionStorage.setItem("token", res.data.Authorization);
@@ -38,7 +38,7 @@ const UserProvider = ({ children }) => {
       }
       setUser(res.data.user);
     } catch (err) {
-      alertError(err.response.data);
+      alertError(err.response.data.error);
     }
   };
 
@@ -50,7 +50,7 @@ const UserProvider = ({ children }) => {
       }
       setUser(data.user);
     } catch (e) {
-      alertError(e);
+      console.log(e);
     }
   };
 

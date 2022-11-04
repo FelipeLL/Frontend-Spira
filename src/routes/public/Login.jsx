@@ -1,12 +1,13 @@
 import "react-toastify/dist/ReactToastify.css";
 import styles from "../../styles/login.module.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { formValidate } from "../../utilities/formValidate";
 import FormError from "../../components/FormError";
 import { alertError } from "../../utilities/Alerts";
 import { ToastContainer } from "react-toastify";
-
+import { UserContext } from "../../context/UserProvider";
+import { useContext, useEffect } from "react";
 const Login = () => {
   const {
     register,
@@ -15,9 +16,18 @@ const Login = () => {
   } = useForm();
   const { required } = formValidate();
 
+  const { login, user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      navigate("/list");
+    }
+  }, [user]);
+
   const onSubmit = async (data) => {
     try {
-      console.log(data);
+      await login(data);
     } catch (error) {
       alertError(error.response.data);
     }
