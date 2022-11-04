@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './routes/public/Login';
 import Backoffice from "./routes/private/Backoffice";
 import CreateUser from "./routes/private/CreateUser";
+import AssingCourse from "./routes/private/AssingCourse";
+import UserList from "./routes/private/UserList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +19,8 @@ root.render(
           <Route index element={<Login />} />
           <Route path="/backoffice" element={<Backoffice />} />
           <Route path="/backoffice/create" element={<CreateUser />} />
+          <Route path="/backoffice/assign" element={<AssingCourse />} />
+          <Route path="/backoffice/list" element={<UserList />} />
         </Route>
       </Routes>
     </BrowserRouter>
