@@ -10,23 +10,25 @@ import CreateUser from "./routes/private/CreateUser";
 import AssingCourse from "./routes/private/AssingCourse";
 import UserList from "./routes/private/UserList";
 import CourseList from "./routes/public/CourseList";
-
+import UserProvider from './context/UserProvider';
+import Auth from "./components/Auth"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}>
-          <Route index element={<Login />} />
-          <Route path="/backoffice" element={<Backoffice />} />
-          <Route path="/backoffice/create" element={<CreateUser />} />
-          <Route path="/backoffice/assign" element={<AssingCourse />} />
-          <Route path="/backoffice/list" element={<UserList />} />
-          <Route path="/list" element={<CourseList />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}>
+            <Route index element={<Login />} />
+            <Route path="/backoffice" element={<Auth> <Backoffice /> </Auth>} />
+            <Route path="/backoffice/create" element={<Auth> <CreateUser /> </Auth>} />
+            <Route path="/backoffice/assign" element={<Auth><AssingCourse /> </Auth>} />
+            <Route path="/backoffice/list" element={<UserList />} />
+            <Route path="/list" element={<CourseList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );
 
