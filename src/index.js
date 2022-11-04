@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './routes/public/Login';
+import Backoffice from "./routes/private/Backoffice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,7 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route index element={<Login />} />
-
+          <Route path="/backoffice" element={<Backoffice />} />
         </Route>
       </Routes>
     </BrowserRouter>
