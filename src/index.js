@@ -9,6 +9,7 @@ import Backoffice from "./routes/private/Backoffice";
 import CreateUser from "./routes/private/CreateUser";
 import AssingCourse from "./routes/private/AssingCourse";
 import UserList from "./routes/private/UserList";
+import CourseList from "./routes/public/CourseList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
           <Route path="/backoffice/create" element={<CreateUser />} />
           <Route path="/backoffice/assign" element={<AssingCourse />} />
           <Route path="/backoffice/list" element={<UserList />} />
+          <Route path="/list" element={<CourseList />} />
         </Route>
       </Routes>
     </BrowserRouter>
